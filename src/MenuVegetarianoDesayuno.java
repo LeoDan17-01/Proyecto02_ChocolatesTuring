@@ -1,5 +1,5 @@
-public class MenuDesayunoVegetariano extends Menu {
-    public MenuDesayunoVegetariano() {
+public class MenuVegetarianoDesayuno extends Menu {
+    public MenuVegetarianoDesayuno() {
         descripcion = "Desayuno Vegetariano";
         precioBase = 25.50;
         tipo = TipoMenu.DESAYUNO;
