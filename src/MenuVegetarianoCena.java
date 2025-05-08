@@ -1,11 +1,9 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class MenuVegetarianoCena extends Menu {
-    private List<Platillo> platillos;
 
     public MenuVegetarianoCena() {
-        super("Menú Vegetariano de Cena", 60, TipoMenu.CENA);
+        super("Menú Vegetariano de Cena", 20, TipoMenu.CENA);
         platillos = new ArrayList<>();
         platillos.add(new Platillo("Pasta Vegetariana", 32));
         platillos.add(new Platillo("Ensalada", 20));

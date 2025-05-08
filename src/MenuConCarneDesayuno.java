@@ -1,12 +1,10 @@
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class MenuConCarneDesayuno extends Menu {
 
-    private List<Platillo> platillos;
-
     public MenuConCarneDesayuno() {
-        super("Menú con Carne de Desayuno", 60, TipoMenu.DESAYUNO);
+        super("Menú con Carne de Desayuno", 20, TipoMenu.DESAYUNO);
         platillos = new ArrayList<>();
         platillos.add(new Platillo("Tacos de Carne", 32));
         platillos.add(new Platillo("Fruta", 20));

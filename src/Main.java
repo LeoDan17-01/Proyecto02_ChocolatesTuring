@@ -1,13 +1,12 @@
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        
         // 1. Bienvenida al Comedor Estudiantil
         System.out.println("¡Bienvenido al Comedor Estudiantil! :)");
-
+        
         // 2. Selección del tipo de usuario
         System.out.println("¿Qué tipo de usuario eres?");
         System.out.println("1. Estudiante 20%");
@@ -17,23 +16,22 @@ public class Main {
         int tipoUsuario = scanner.nextInt();
         TipoUsuario tipo = seleccionarTipoUsuario(tipoUsuario);
         Comensal comensal = new Comensal("Comensal", "0000", tipo);
-
+        
         // 3. Selección del menú
         System.out.println("¿Qué tipo de menú deseas?");
+        System.out.println("Todas las opciones valen $60");
         System.out.println("1. Desayuno");
         System.out.println("2. Comida");
         System.out.println("3. Cena");
         int tipoMenu = scanner.nextInt();
-
+        
         // Menú según tipo de comida
         Menu menu = seleccionarMenu(tipoMenu, scanner);
-        
-        // Mostrar los platillos y sus precios
         menu.mostrarMenu();
 
         // 4. Selección de extras
         menu = seleccionarExtras(menu, scanner);  // Ahora pasamos comensal como parámetro
-
+        
         // Calcular el precio final con descuento
         double precioFinal = comensal.calcularPrecio(menu);
 
@@ -43,7 +41,7 @@ public class Main {
         System.out.println("Menú seleccionado: " + menu.getDescripcion());
         System.out.println("Precio base: $" + menu.getPrecio());
         System.out.println("Precio con descuento: $" + precioFinal);
-
+        
         // Despedida
         System.out.println("\n¡Gracias por visitar el Comedor Estudiantil! ¡Vuelve pronto!");
     }
@@ -146,3 +144,4 @@ public class Main {
         return menu;  // Retornamos el menú con los extras aplicados
     }
 }
+

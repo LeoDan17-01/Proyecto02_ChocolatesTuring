@@ -1,11 +1,11 @@
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class MenuConCarneCena extends Menu {
-    private List<Platillo> platillos;
+  
 
     public MenuConCarneCena() {
-        super("Menú con Carne de Cena", 60, TipoMenu.CENA);
+        super("Menú con Carne de Cena", 20, TipoMenu.CENA);
         platillos = new ArrayList<>();
         platillos.add(new Platillo("Pasta con Carne", 32));
         platillos.add(new Platillo("Ensalada", 20));

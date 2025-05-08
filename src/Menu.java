@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 
 public abstract class Menu {
     protected String descripcion;
@@ -10,6 +11,7 @@ public abstract class Menu {
         this.descripcion = descripcion;
         this.precioBase = precioBase;
         this.tipo = tipo;
+        this.platillos = new ArrayList<>();
     }
 
     public abstract String getDescripcion();
@@ -23,9 +25,19 @@ public abstract class Menu {
     public void mostrarMenu() {
         System.out.println(getDescripcion() + " - Precio: $" + getPrecio());
         System.out.println("Platillos incluidos:");
-        for (Platillo platillo : platillos) {
-            System.out.println(platillo.getNombre() + " - Precio: $" + platillo.getPrecio());
+        System.out.println("Por el trabajo de nuestros compañeros en la cocina + $20");
+
+
+        for (int i = 0; i < platillos.size(); i++) {
+            Platillo platillo = platillos.get(i);
+            // Imprimir cada platillo y su precio
+            System.out.print(platillo.getNombre() + " $" + platillo.getPrecio());
+            // Si no es el último platillo, añadimos una coma y espacio
+            if (i < platillos.size() - 1) {
+                System.out.print(", ");
+            }
         }
+        System.out.println();
     }
     // Getters y Setters
     public double getPrecioBase() { return precioBase; }
