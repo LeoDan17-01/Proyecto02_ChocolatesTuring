@@ -25,6 +25,8 @@ public class Comensal implements ComensalObserver {
                 return new EstrategiaProfesor();
             case VISITANTE:
                 return new EstrategiaVisitante();
+            case TRABAJADOR_CIENCIAS:
+                return new EstrategiaTrabajadorCiencias();
             default:
                 throw new IllegalArgumentException("Tipo de usuario desconocido");
         }

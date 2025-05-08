@@ -8,6 +8,6 @@ public class QuesoDecorator extends ExtraDecorator {
     
     @Override 
     public double getPrecio() { 
-        return menu.getPrecio() + 5.00; 
+        return menu.getPrecio() + 8.00; 
     }
 }

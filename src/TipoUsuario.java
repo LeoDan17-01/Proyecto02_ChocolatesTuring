@@ -1,5 +1,6 @@
 public enum TipoUsuario {
     ESTUDIANTE,
     PROFESOR,
-    VISITANTE
+    VISITANTE,
+    TRABAJADOR_CIENCIAS
 }
