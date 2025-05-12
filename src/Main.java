@@ -1,11 +1,25 @@
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Clase principal que maneja la interacción con el usuario y el flujo del programa
+ */
 public class Main {
+    /**
+     * Método principal que inicia la aplicación
+     * @param args argumentos de línea de comandos (no utilizados)
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
+        // Obtener número de pedido secuencial
+        int numeroPedido = PedidoCounter.getNextPedidoNumber();
+        
         // 1. Bienvenida al Comedor Estudiantil
         System.out.println("¡Bienvenido al Comedor Estudiantil! :)");
+        System.out.println("Número de pedido: " + numeroPedido);
         
         // 2. Selección del tipo de usuario
         System.out.println("¿Qué tipo de usuario eres?");
@@ -30,23 +44,48 @@ public class Main {
         menu.mostrarMenu();
 
         // 4. Selección de extras
-        menu = seleccionarExtras(menu, scanner);  // Ahora pasamos comensal como parámetro
+        menu = seleccionarExtras(menu, scanner);
         
         // Calcular el precio final con descuento
         double precioFinal = comensal.calcularPrecio(menu);
 
         // 5. Mostrar el ticket con descuento
         System.out.println("\n--- TICKET DE COMPRA ---");
+        System.out.println("Número de pedido: " + numeroPedido);
         System.out.println("Usuario: " + comensal.getNombre());
         System.out.println("Menú seleccionado: " + menu.getDescripcion());
         System.out.println("Precio base: $" + menu.getPrecio());
         System.out.println("Precio con descuento: $" + precioFinal);
         
+        // 6. Crear y registrar el pedido (CORRECCIÓN APLICADA AQUÍ)
+        Pedido pedido = new Pedido();
+        pedido.setNumeroPedido(numeroPedido);
+        pedido.setUsuario(new Usuario(comensal.getNombre(), comensal.getMatricula(), comensal.getTipo()));
+        
+        // Crear lista de items y agregar el menú
+        List<Menu> itemsPedido = new ArrayList<>();
+        itemsPedido.add(menu);
+        pedido.setItems(itemsPedido);
+        
+        pedido.setTotal(precioFinal);
+        pedido.setFecha(LocalDateTime.now());
+        
+        ComedorModel comedor = new ComedorModel();
+        comedor.registrarPedido(pedido);
+        
+        // Mostrar informe del pedido
+        System.out.println("\n--- INFORME DEL PEDIDO ---");
+        System.out.println(comedor.generarInformePedido(pedido));
+        
         // Despedida
         System.out.println("\n¡Gracias por visitar el Comedor Estudiantil! ¡Vuelve pronto!");
     }
 
-    // Método para seleccionar tipo de usuario
+    /**
+     * Selecciona el tipo de usuario basado en la entrada del usuario
+     * @param tipoUsuario opción numérica seleccionada
+     * @return enumerador TipoUsuario correspondiente
+     */
     private static TipoUsuario seleccionarTipoUsuario(int tipoUsuario) {
         switch (tipoUsuario) {
             case 1: return TipoUsuario.ESTUDIANTE;
@@ -57,7 +96,12 @@ public class Main {
         }
     }
 
-    // Método para seleccionar menú según el tipo de comida
+    /**
+     * Selecciona el menú según el tipo de comida
+     * @param tipoMenu opción numérica seleccionada
+     * @param scanner objeto Scanner para entrada de usuario
+     * @return objeto Menu creado
+     */
     private static Menu seleccionarMenu(int tipoMenu, Scanner scanner) {
         Menu menu = null;
         switch (tipoMenu) {
@@ -88,12 +132,16 @@ public class Main {
         return menu;
     }
 
-    // Método para seleccionar extras
+    /**
+     * Permite seleccionar extras para el menú
+     * @param menu menú base al que agregar extras
+     * @param scanner objeto Scanner para entrada de usuario
+     * @return menú con los extras aplicados
+     */
     private static Menu seleccionarExtras(Menu menu, Scanner scanner) {
-        char agregarExtras = 'S';  // Iniciamos el ciclo preguntando si quiere agregar extras
+        char agregarExtras = 'S';
     
         while (agregarExtras == 'S' || agregarExtras == 's') {
-            // Mostrar opciones de extras
             System.out.println("¿Qué extra deseas agregar?");
             System.out.println("1. Lechuga + $5");
             System.out.println("2. Queso + $8");
@@ -103,14 +151,11 @@ public class Main {
             System.out.println("6. Crema + $5");
             System.out.println("0. Salir");
     
-            // Leer la opción seleccionada por el usuario
             int opcionExtra = scanner.nextInt();
     
-            // Si el usuario selecciona 0, salimos del ciclo
             if (opcionExtra == 0) {
-                agregarExtras = 'N';  // Cambiamos la variable para salir del ciclo
+                agregarExtras = 'N';
             } else {
-                // Seleccionar el decorador correspondiente según la opción
                 switch (opcionExtra) {
                     case 1:
                         menu = new LechugaDecorator(menu);
@@ -135,13 +180,11 @@ public class Main {
                 }
             }
     
-            // Preguntar al usuario si desea agregar otro extra
             if (agregarExtras != 'N') {
                 System.out.println("¿Deseas agregar otro extra? (S para sí, N para no)");
-                agregarExtras = scanner.next().charAt(0);  // Leer la respuesta del usuario
+                agregarExtras = scanner.next().charAt(0);
             }
         }
-        return menu;  // Retornamos el menú con los extras aplicados
+        return menu;
     }
 }
-
