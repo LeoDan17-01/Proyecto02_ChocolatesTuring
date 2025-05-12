@@ -5,7 +5,7 @@ import java.util.UUID;
 
 /**
  * Representa un pedido realizado por un usuario
- * Contiene los items del pedido su fecha y el total calculado
+ * Contiene los items del pedido su fecha el total y un identificador unico
  */
 public class Pedido {
     private String id = UUID.randomUUID().toString();
@@ -16,7 +16,8 @@ public class Pedido {
     private double total;
 
     /**
-     * Genera un informe textual del pedido incluyendo número de pedido, cliente, items y total
+     * Genera un informe textual del pedido con datos del cliente y detalle de los items
+     *
      * @return informe del pedido en formato texto
      */
     public String generarInforme() {
@@ -32,47 +33,101 @@ public class Pedido {
         return sb.toString();
     }
 
-    // Resto de los métodos getters y setters...
+    /**
+     * Retorna el identificador unico del pedido
+     *
+     * @return ID del pedido
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Retorna el numero secuencial del pedido
+     *
+     * @return numero del pedido
+     */
     public int getNumeroPedido() {
         return numeroPedido;
     }
 
+    /**
+     * Define el numero secuencial del pedido
+     *
+     * @param numeroPedido numero asignado al pedido
+     */
     public void setNumeroPedido(int numeroPedido) {
         this.numeroPedido = numeroPedido;
     }
 
+    /**
+     * Retorna el usuario que realizo el pedido
+     *
+     * @return objeto usuario
+     */
     public Usuario getUsuario() {
         return usuario;
     }
 
+    /**
+     * Asigna el usuario al pedido
+     *
+     * @param usuario usuario que realizo el pedido
+     */
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
+    /**
+     * Retorna una copia de los menus incluidos en el pedido
+     *
+     * @return lista de items del pedido
+     */
     public List<Menu> getItems() {
         return new ArrayList<>(items);
     }
 
+    /**
+     * Asigna una lista de menus como items del pedido
+     *
+     * @param items lista de menus
+     */
     public void setItems(List<Menu> items) {
         this.items = new ArrayList<>(items);
     }
 
+    /**
+     * Retorna la fecha en que se realizo el pedido
+     *
+     * @return fecha del pedido
+     */
     public LocalDateTime getFecha() {
         return fecha;
     }
 
+    /**
+     * Define la fecha del pedido
+     *
+     * @param fecha fecha asignada al pedido
+     */
     public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 
+    /**
+     * Retorna el total del pedido
+     *
+     * @return monto total
+     */
     public double getTotal() {
         return total;
     }
 
+    /**
+     * Asigna el monto total del pedido
+     *
+     * @param total valor total a registrar
+     */
     public void setTotal(double total) {
         this.total = total;
     }

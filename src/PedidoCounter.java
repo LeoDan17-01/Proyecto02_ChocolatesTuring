@@ -3,8 +3,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- * Clase utilitaria para manejar el contador persistente de números de pedido.
- * Almacena el último número usado en un archivo para mantener la secuencia entre ejecuciones.
+ * Clase utilitaria para manejar el contador persistente de numeros de pedido
+ * Almacena el ultimo numero usado en un archivo para mantener la secuencia entre ejecuciones
  */
 public class PedidoCounter {
     private static final String COUNTER_FILE = "pedido_counter.txt";
@@ -23,8 +23,9 @@ public class PedidoCounter {
     }
 
     /**
-     * Obtiene el siguiente número de pedido en la secuencia y lo persiste
-     * @return el siguiente número de pedido disponible
+     * Obtiene el siguiente numero de pedido en la secuencia y lo guarda en archivo
+     *
+     * @return el siguiente numero de pedido disponible
      */
     public static int getNextPedidoNumber() {
         counter++;
