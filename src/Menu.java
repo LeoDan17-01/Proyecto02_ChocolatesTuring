@@ -67,18 +67,38 @@ public abstract class Menu {
         System.out.println();
     }
 
+    /**
+     * Retorna el precio base del menu.
+     *
+     * @return precio base
+     */
     public double getPrecioBase() {
         return precioBase;
     }
 
+    /**
+     * Establece el precio base del menu.
+     *
+     * @param precioBase nuevo valor para el precio base
+     */
     public void setPrecioBase(double precioBase) {
         this.precioBase = precioBase;
     }
 
+    /**
+     * Retorna el tipo de menu.
+     *
+     * @return tipo de menu
+     */
     public TipoMenu getTipo() {
         return tipo;
     }
 
+    /**
+     * Establece el tipo de menu.
+     *
+     * @param tipo nuevo tipo de menu
+     */
     public void setTipo(TipoMenu tipo) {
         this.tipo = tipo;
     }

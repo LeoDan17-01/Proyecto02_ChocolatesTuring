@@ -64,10 +64,45 @@ public class Comensal implements ComensalObserver {
         return estrategiaPrecio.calcularPrecio(menu);
     }
 
+    /**
+     * Retorna el nombre del comensal.
+     *
+     * @return nombre del comensal
+     */
     public String getNombre() { return nombre; }
+
+    /**
+     * Establece el nombre del comensal.
+     *
+     * @param nombre nuevo valor para el nombre
+     */
     public void setNombre(String nombre) { this.nombre = nombre; }
+
+    /**
+     * Retorna la matricula del comensal.
+     *
+     * @return matricula del comensal
+     */
     public String getMatricula() { return matricula; }
+
+    /**
+     * Establece la matricula del comensal.
+     *
+     * @param matricula nuevo valor para la matricula
+     */
     public void setMatricula(String matricula) { this.matricula = matricula; }
+
+    /**
+     * Retorna el tipo de usuario del comensal.
+     *
+     * @return tipo de usuario
+     */
     public TipoUsuario getTipo() { return tipo; }
+
+    /**
+     * Establece el tipo de usuario del comensal.
+     *
+     * @param tipo nuevo tipo de usuario
+     */
     public void setTipo(TipoUsuario tipo) { this.tipo = tipo; }
 }
